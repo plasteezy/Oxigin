@@ -60,8 +60,8 @@ namespace Web.Data.Model
     {
         public int CategoryDataSetId { get; set; }
         public int ProjectDataSetId { get; set; }
-        public string SentimentLabel { get; set; }
-        public double SentimentScore { get; set; }
+        public string Label { get; set; }
+        public double Score { get; set; }
         public virtual ProjectDataSet ProjectDataSet { get; set; }
 
     }

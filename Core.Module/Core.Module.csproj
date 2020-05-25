@@ -61,6 +61,10 @@
       <Project>{168F3101-DA56-4C3C-B9BC-ED7BE976389D}</Project>
       <Name>Global</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Web.Data\Web.Data.csproj">
+      <Project>{36066E5B-09BB-4658-B2D1-2D3DBCDBA5A9}</Project>
+      <Name>Web.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

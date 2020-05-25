@@ -12,8 +12,9 @@ namespace Core.Lib.Models
     public class WatsonTextAnalysisResponse
     {
         public Usage usage { get; set; }
-        public Sentiment sentiment { get; set; }
         public string language { get; set; }
+        public Sentiment sentiment { get; set; }
+        public List<Category> categories { get; set; }
         public List<Keyword> keywords { get; set; }
         public Emotion emotion { get; set; }
     }
@@ -41,6 +42,12 @@ namespace Core.Lib.Models
         public string text { get; set; }
         public double relevance { get; set; }
         public int count { get; set; }
+    }
+
+    public class Category
+    {
+        public string label { get; set; }
+        public double score { get; set; }
     }
 
     public class Emotion2
