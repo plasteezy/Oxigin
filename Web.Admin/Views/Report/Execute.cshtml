@@ -1,0 +1,179 @@
+﻿@model Web.Admin.Models.QueryResultsModel
+@{
+    ViewBag.Title = "Report - Generate";
+    ViewBag.IsEditing = true;
+}
+
+@section header{
+    <div class="page-header">
+        <h1 class="pull-left">
+            <i class="fa fa-briefcase"></i>
+            <span>Custom Reports</span>
+        </h1>
+    </div>
+}
+
+<section>
+    <fieldset>
+        <h3>Run Report - @Model.Query.Description</h3>
+        @{Html.EnableClientValidation();}
+        @using (Html.BeginForm("Execute", "Report", FormMethod.Get)) {
+
+            <div class="form-group">
+                <label for="Description" class="control-label">Description:</label>
+                    @Model.Query.Description
+            </div>
+            if (Model.QueryParameters != null) {
+                 foreach (var qparam in Model.QueryParameters.QueryParameters) {
+                     @Html.Partial("QueryParameter", qparam)
+                 }
+             }
+            <div class="form-group">
+                <label for="Debug" class="control-label">Debug:</label>
+                    @if (Model.Debug) {
+                        <input name="-debug-" type="checkbox" value="true" checked="checked" />
+                    }
+                    else {
+                        <input name="-debug-" type="checkbox" value="true" />
+                    }
+            </div>
+            <div class="form-group">
+                <label for="Download" class="control-label">Download:</label>
+                    @if (Model.Download) {
+                        <input name="-download-" type="checkbox" value="true" checked="checked" />
+                    }
+                    else {
+                        <input name="-download-" type="checkbox" value="true" />
+                    }
+            </div>
+            <div class="form-actions">
+                <button name="-execute-" class="btn btn-success" type="submit">Run Report</button>
+                <button type="button" class="btn btn-danger"
+                        onclick="window.location.href='@Url.Action("Index", "Report")';">Cancel
+                </button>
+            </div>
+        }
+    </fieldset>
+</section>
+@if (Model.SqlQuery != null) {
+    <section>
+        <h3>Debug Info</h3>
+        <fieldset>
+            <table class="table table-striped">
+                <tr>
+                    <td>
+                        Sql Query:
+                    </td>
+                    <td>@Model.SqlQuery
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </section>
+}
+@if (Model.QueryResults != null) {
+    try {
+    <section>
+        <fieldset>
+            <h3><legend>Results</legend></h3>
+            <h4>Displaying only first 1000 rows.</h4>
+            @if (!Model.QueryResults.Read()) {
+                <p>No data was returned from query. </p>
+            }
+            else {
+                <div style="overflow: scroll; max-height: 300px; width: 100%">
+                    <table class="table table-striped" style="float:left; width:100%" id="resultsTable">
+                        <thead>
+                            <tr>
+                                @for (int i = 0; i < Model.QueryResults.VisibleFieldCount; i++) {
+                                    <th>@Model.QueryResults.GetName(i)</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{int recordIndex = 0;}
+                            @do {
+                                recordIndex++;
+                                <tr>
+                                    @for (int i = 0; i < Model.QueryResults.VisibleFieldCount; i++) {
+                                        <td>@Model.QueryResults[i]
+                                        </td>
+                                    }
+                                </tr>
+                                    if (recordIndex >= 1000) { break; }
+                            } while (Model.QueryResults.Read());
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </fieldset>
+    </section>
+    }
+    finally { Model.QueryResults.Close(); }
+}
+
+<script type="text/javascript" src='@Url.Content("~/Scripts/jquery-ui-timepicker-addon.js")'></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*$.validator.addMethod("INT", function (value, element) {
+        return this.optional(element) || /^(\+|-)?\d{1,10}$/.test(value);
+        }, "Invalid");
+        $.validator.addMethod("LONG", function (value, element) {
+        return this.optional(element) || /^(\+|-)?\d{1,20}$/.test(value);
+        }, "Invalid");
+        $.validator.addMethod("GUID", function (value, element) {
+        return this.optional(element) || /^[\dA-Fa-f]{8}-[\dA-Fa-f]{4}-[\dA-Fa-f]{4}-[\dA-Fa-f]{4}-[\dA-Fa-f]{12}$/.test(value);
+        }, "Invalid");
+        $('form').validate();*/
+        /*$('.DATE').datetimepicker({
+        dateFormat: 'yy-mm-dd',
+        timeFormat: '12:00:00 AM',
+        showHour: false,
+        showMinute: false,
+        showSecond: false,
+        showButtonPanel: true,
+        showOn: "both",
+        buttonImage: '<%: Url.Content("~/Content/calendar.png") %>',
+        buttonImageOnly: true,
+        buttonText: "Choose date...",
+        changeMonth: true,
+        changeYear: true,
+        showOtherMonths: true,
+        selectOtherMonths: true
+        });*/
+        $('.DATETIME').datetimepicker({
+            dateFormat: 'yy-mm-dd',
+            timeFormat: 'hh:mm:ss TT',
+            ampm: true,
+            showSecond: true,
+            hourGrid: 4,
+            minuteGrid: 10,
+            secondGrid: 10,
+            showButtonPanel: true,
+            showOn: "both",
+            buttonImage: '<%: Url.Content("~/Content/calendar.png") %>',
+            buttonImageOnly: true,
+            buttonText: "Choose date & time...",
+            changeMonth: true,
+            changeYear: true,
+            showOtherMonths: true,
+            selectOtherMonths: true
+        });
+        $('.TIME').timepicker({
+            timeFormat: 'hh:mm:ss TT',
+            ampm: true,
+            showSecond: true,
+            hourGrid: 4,
+            minuteGrid: 10,
+            secondGrid: 10,
+            showButtonPanel: true,
+            showOn: "both",
+            buttonImage: '<%: Url.Content("~/Content/calendar.png") %>',
+            buttonImageOnly: true,
+            buttonText: "Choose time...",
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+</script>

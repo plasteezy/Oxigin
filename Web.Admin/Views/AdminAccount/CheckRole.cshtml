@@ -1,0 +1,53 @@
+﻿@model Web.Admin.Models.CheckRole
+
+@{
+    ViewBag.Title = "Role Manager";
+}
+
+@section header{
+    <div class="page-header">
+        <h1 class="pull-left">
+            <i class="fa fa-user"></i>
+            <span>Admin :: Check User Role</span>
+        </h1>
+    </div>
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box">
+            <div class="box-header dark-background">
+                <div class="title">
+                    <div class="fa fa-plus-square"></div>
+                    Role Details
+                </div>
+                <div class="actions">
+                    <a class="btn box-collapse btn-xs btn-link" href="#">
+                        <i></i>
+                    </a>
+                </div>
+            </div>
+            <div class="box-content">
+                @{Html.BeginForm(); }
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email)
+                    @Html.EditorFor(model => model.Email)<br />
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+
+                <div class="form-actions form-actions-padding-sm form-actions-padding-md form-actions-padding-lg" style="margin-bottom: 0;">
+                    <input type="submit" class="btn btn-success btn-sm" value="Submit" /> or
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-sm btn-danger">Cancel</a>
+                </div>
+                @{Html.EndForm(); }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

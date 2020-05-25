@@ -1,0 +1,91 @@
+@using Web.Admin.Models
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework
+@model UserAccount
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@{
+    var context = new ApplicationDbContext();
+    var store = new UserStore<ApplicationUser>(context);
+    var manager = new UserManager<ApplicationUser>(store);
+}
+
+@section header{
+    <div class="page-header">
+        <h1 class="pull-left">
+            <i class="fa fa-trash"></i>
+            <span>User :: Delete</span>
+        </h1>
+    </div>
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box">
+            <div class="box-header dark-background">
+                <div class="title">
+                    <div class="fa fa-trash"></div>
+                    Are Your Sure?
+                </div>
+                <div class="actions">
+                    <a class="btn box-collapse btn-xs btn-link" href="#">
+                        <i></i>
+                    </a>
+                </div>
+            </div>
+            <div class="box-content">
+                @{Html.BeginForm(); }
+
+                <div class="form-group">
+                    <label>Username</label>
+                    <div style="display: block">
+                        @Model.UserName
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <div style="display: block">
+                        @Model.Name
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Access Level</label>
+                    <div style="display: block">
+                        @if (manager.IsInRole(Model.Id, "SuperAdmin"))
+                        {
+                            <span>Super Admin</span>
+                        }
+                        else
+                        {
+                            <span>Admin</span>
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Date Created</label>
+                    <div style="display: block">
+                        @Model.DateCreated
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Last Login Date</label>
+                    <div style="display: block">
+                        @Model.LastLoginDate
+                    </div>
+                </div>
+                <div class="form-actions form-actions-padding-sm form-actions-padding-md form-actions-padding-lg" style="margin-bottom: 0;">
+                    <input type="submit" class="btn btn-danger btn-sm" value="Delete" /> or
+                    <a href="@Url.Action("Index", "AdminAccount")" class="btn btn-sm btn-primary">Go Back</a>
+                </div>
+                @{Html.EndForm(); }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,99 @@
+﻿@using Web.Admin.Components
+@using Web.Admin.Models
+@model QueryParameter
+<tr>
+    <td class="field-header" valign="top">
+        @Model.Name:
+    </td>
+    <td>
+        @{
+            if (Model.UserInterfaceElement != null)
+            {
+                var uiConfig = Model.UserInterfaceElement.CustomAttributes;
+                switch (Model.UserInterfaceElement.Type)
+                {
+                    case UserInterfaceElementType.DROP_DOWN:
+                        {
+                            var data = uiConfig.Single(attr => attr.Name ==
+                                QueryParameterParser.UI_DATA_PARAMETER).Value;
+                            var dropDownData = QueryParameterParser.CreateDropDownData(data, Model.Value);
+                            @Html.DropDownList(Model.Id, dropDownData, "", new { });
+                        }
+                        break;
+                    case UserInterfaceElementType.DROP_DOWN_DB:
+                        {
+                            var queryId = Int32.Parse(uiConfig.Single(attr => attr.Name ==
+                                QueryParameterParser.UI_DATASOURCE_PARAMETER).Value);
+                            var dropDownData = QueryParameterParser.CreateDropDownData(queryId, Model.Value);
+                            @Html.DropDownList(Model.Id, dropDownData, "", new { });
+                        }
+                        break;
+                    case UserInterfaceElementType.AUTOCOMPLETE:
+                        {
+                            @Html.TextBox(Model.Id, Model.Value, new { @class = "text-box single-line",
+                                id = Model.Id });
+                            var queryId = Int32.Parse(uiConfig.Single(attr => attr.Name ==
+                                QueryParameterParser.UI_DATASOURCE_PARAMETER).Value);
+                            Html.ViewContext.Writer.Write(@"
+<script type='text/javascript'>
+        $(document).ready
+        (
+            function () {
+                $('#" + Model.Id + @"').attr('autocomplete', 'off');
+                $('#" + Model.Id + @"').autocomplete(
+                    {
+                        serviceUrl: '" +
+                                HttpUtility.JavaScriptStringEncode(
+                        Url.Action("GetAutocompleteData", "Report", new { savedQueryId = queryId }).ToString())
+                        + @"',
+                        minChars: 1,
+                        onSelect: function(value, data)
+                        {
+                            $('#" + Model.Id + @"').val(data);
+                        }
+                    }
+                );
+            }
+        );
+    </script>");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                switch (Model.Type)
+                {
+                    //case QueryParameterType.INT:
+                    //case QueryParameterType.LONG:
+                    case QueryParameterType.DATE:
+                    case QueryParameterType.TIME:
+                    case QueryParameterType.DATETIME:
+                        @Html.TextBox(Model.Id, Model.Value,
+                        new { @class = "text-box single-line is-date " + Model.Type });
+                                                                                      break;
+                    //case QueryParameterType.GUID:
+                    //    Response.Write(Html.TextBox(Model.Id, Model.Value,
+                    //        new { @class = (Model.Default == null ? "required " : "") + Model.Type }));
+                    //    break;
+                    //case QueryParameterType.DOUBLE:
+                    //case QueryParameterType.FLOAT:
+                    //case QueryParameterType.DECIMAL:
+                    //    Response.Write(Html.TextBox(Model.Id, Model.Value,
+                    //        new { @class = (Model.Default == null ? "required " : "") + "number" }));
+                    //    break;
+                    case QueryParameterType.BOOLEAN:
+                                                                                      Html.ViewContext.Writer.Write("<input id='" + Model.Id + "' name='" + Model.Id +
+                                                                                          "' type='checkbox' value='true' " +
+                                                                                          (Model.Value == "true" ? "checked='checked'" : "") + " />");
+                                                                                      break;
+                    default:
+                        @Html.TextBox(Model.Id, Model.Value, new { @class = "text-box single-line" });
+                                                                                                     break;
+                }
+            }
+        }
+    </td>
+</tr>

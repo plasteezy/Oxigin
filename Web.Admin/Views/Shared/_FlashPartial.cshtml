@@ -1,0 +1,37 @@
+﻿@if (TempData["flash"] != null) {
+<script type="text/javascript">
+    $(function () {
+        setTimeout(function () {
+            $('.alert').hide('fast');
+        }, 10000);
+
+        $('.alert .close').click(function () {
+            $('.alert').hide('fast');
+        });
+    })
+</script>
+<div id="flash"
+    @if (TempData["flashmode"].ToString() == "error") { <text>class="alert alert-danger"</text> }
+    else if ((string) TempData["flashmode"] == "warning") { <text>class="alert"</text> }
+    else if ((string) TempData["flashmode"] == "info") { <text>class="alert alert-info"</text> }
+    else { <text>class="alert alert-success"</text> }>
+        <a class="close" data-dismiss="alert">×</a>
+        <strong>Notice:</strong>
+        @if (!string.IsNullOrEmpty((string) TempData["flash"])) {
+            @TempData["flash"]
+        }
+        else {
+            @Html.ValidationSummary("There are one or more errors that require your attention.")
+        }
+</div>
+}
+
+@if (TempData["has_errors"] != null) {
+<div id="validationerrors">
+    <ul>
+    @foreach (string err in (List<string>)TempData["errors"]) {
+    	<li>@err</li>
+    }
+    </ul>
+</div>
+}

@@ -1,0 +1,29 @@
+﻿#NavTab {
+    margin-left: -12px;
+    margin-right: 10px;
+}
+
+.box .box-header {
+    line-height: 0px;
+    font-size: 16px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+textarea#CalcMessage {
+    height: 124px;
+}
+
+.supportTable {
+    border-collapse: collapse;
+}
+
+.supportTable > tbody > tr > td {
+    border: none;
+}
+
+.field-validation-error {
+    color: tomato;
+}

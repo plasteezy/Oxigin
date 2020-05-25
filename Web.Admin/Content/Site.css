@@ -1,0 +1,206 @@
+﻿      /* Override some defaults */
+      @import 'jquery-ui.css';
+      @import 'jquery-ui.ie.css';
+      @import 'colours.css';
+      @import 'override.css';
+      body {
+        padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */        
+      }
+      .container > footer p {
+        text-align: center; /* center align it with the container */
+      }
+      
+      .container-fluid > footer p {
+        text-align: center; /* center align it with the container */
+      }
+
+      /* The white background content wrapper */
+      .content {
+        background-color: #fff;
+        padding: 20px;
+       /* margin: 0 -20px;  negative indent the amount of the padding to maintain the grid system */
+        /*
+        -webkit-border-radius: 0 0 6px 6px;
+           -moz-border-radius: 0 0 6px 6px;
+                border-radius: 0 0 6px 6px;
+        */
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                
+      }
+
+      /* Page header tweaks */
+      .page-header {
+        background-color: #f5f5f5;
+        padding: 20px 20px 10px;
+        margin: -20px -20px 20px;
+      }
+
+      /* Styles you shouldn't keep as they are for displaying this base example only */
+      .content .span10,
+      .content .span4 {
+        min-height: 500px;
+      }
+      
+      /* Give a quick and non-cross-browser friendly divider */
+      .content .span4 {
+        margin-left: 0;
+        padding-left: 19px;
+        border-left: 1px solid #eee;
+      }
+
+      .topbar .btn {
+        border: 0;
+      }
+
+
+* {
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+}
+
+ .holder {
+    margin:15px 0;
+}
+.holder a {
+    font-size:12px;
+    cursor:pointer;
+    margin:0 5px;
+    color:#333;
+}
+.holder a:hover {
+    background-color:#222;
+    color:#fff;
+}
+.holder a.jp-previous {
+    margin-right:15px;
+}
+.holder a.jp-next {
+    margin-left:15px;
+}
+.holder a.jp-current,a.jp-current:hover {
+    color:#FF4242;
+    font-weight:bold;
+}
+.holder a.jp-disabled,a.jp-disabled:hover {
+    color:#bbb;
+}
+.holder a.jp-current,a.jp-current:hover,.holder a.jp-disabled,a.jp-disabled:hover {
+    cursor:default;
+    background:none;
+}
+.holder span {
+    margin: 0 5px;
+}
+ul#thumbs { list-style: none; margin: 0px; padding:0px; margin-top: 10px; }
+ul#thumbs li { float: left; margin-right: 10px; cursor:pointer; }
+ul#thumbs li img { height: 75px; vertical-align: top; }
+ul#thumbs li.selected { outline: 3px solid #FF4242; }
+        
+div#img img { width: 600px; height: 400px; }
+        
+div#btns{ position:relative; width: 600px; }
+.prev, .next { width:29px; height:29px; position: relative; top: -95px; cursor: pointer; }
+.prev { background-image: url('images/back.gif'); left: -40px; }
+.next { background-image: url('images/next.gif'); right: -40px; }
+        
+.jp-disabled{ display:none; }
+
+
+span.credits {
+    width: 900px;
+    height: 100px;
+    background-color: #333;
+    color: white;
+    font-size: 14px;
+    font-family: Arial;
+    padding: 5px 5px 5px 5px;
+}
+
+.field-validation-error 
+{
+    float: left;
+    color:rgb(200, 55, 38);
+}
+
+div.menuBar 
+{
+    margin-left: 250px;
+    width: auto;
+    border-top: blue;
+    z-index: 10;
+}
+
+/*--paddings--*/
+.padding5 {
+  padding: 5px;
+}
+.padding10 {
+  padding: 10px;
+}
+.padding15 {
+  padding: 15px;
+}
+.padding20 {
+  padding: 20px;
+}
+.padding30 {
+  padding: 30px;
+}
+.padding40 {
+  padding: 40px;
+}
+.padding80 {
+  padding: 80px;
+}
+
+/*--margins--*/
+.margin5 {
+  margin: 5px;
+}
+.margin10 {
+  margin: 10px;
+}
+.margin15 {
+  margin: 15px;
+}
+.margin20 {
+  margin: 20px;
+}
+.margin30 {
+  margin: 30px;
+}
+.margin40 {
+  margin: 40px;
+}
+.margin80 {
+  margin: 80px;
+}
+
+.marginLeft5 {
+    margin-left: 5px;
+}
+.marginLeft10 {
+    margin-left: 10px;
+}
+.marginLeft15 {
+    margin-left: 15px;
+}
+.marginLeft20 {
+    margin-left: 20px;
+}
+
+.marginRight5 {
+    margin-Right: 5px;
+}
+.marginRight10 {
+    margin-Right: 10px;
+}
+.marginRight15 {
+    margin-Right: 15px;
+}
+.marginRight20 {
+    margin-Right: 20px;
+}

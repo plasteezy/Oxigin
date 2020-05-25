@@ -1,0 +1,103 @@
+﻿@using Web.Admin.Helpers
+@model Web.Admin.Models.LoginViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>App Name - Admin Panel</title>
+    <!-- Le styles -->
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet">
+    <link rel="Stylesheet" href='@Url.Content("~/content/site.css")' type="text/css" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.7.1.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('input:first').focus();
+        });
+    </script>
+    <style type="text/css">
+        /* Override some defaults */ html, body {
+            background-color: #eee;
+        }
+
+        body {
+            padding-top: 15%;
+        }
+
+        .container {
+            width: 500px;
+        }
+
+            /* The white background content wrapper */ .container > .content {
+                background-color: #fff;
+                padding: 20px;
+                /*-webkit-border-radius: 10px 10px 10px 10px;*/
+                /*-moz-border-radius: 10px 10px 10px 10px;*/
+                /*border-radius: 10px 10px 10px 10px;*/
+                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                box-shadow: 0 1px 2px rgba(0,0,0,.15);
+            }
+
+        .login-form {
+            margin-left: 20px;
+        }
+
+        legend {
+            margin-right: -50px;
+            font-weight: bold;
+            color: #404040;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="row">
+                <div class="login-form">
+                    <h3>
+                        Sign in to <span style="font-weight: lighter">App</span> Admin
+                    </h3>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('form').addClass('form-horizontal');
+                        })
+                    </script>
+                    @{ Html.Flash(); }
+                    @{ Html.BeginForm();}
+                    @Html.AntiForgeryToken()
+                    <fieldset style="margin-top: 15px">
+                        <div class="control-group">
+                            <label class="control-label" for="Username">Username:</label>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.Email, new { placeholder = "Enter username" })
+                                @Html.ValidationMessageFor(model => model.Email)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="Password">Password:</label>
+                            <div class="controls">
+                                @Html.PasswordFor(model => model.Password, new { placeholder = "Enter Password" })
+                                @Html.ValidationMessageFor(model => model.Password)
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="RememberMe">Remember Me:</label>
+                            <div class="controls">
+                                @Html.CheckBoxFor(model => model.RememberMe, new { placeholder = "Enter Password" })
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button class="btn btn-success" type="submit">Sign in</button>
+                        </div>
+                    </fieldset>
+                    @{ Html.EndForm(); }
+                </div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 15px;">&copy; @DateTime.Now.Year App Name. All rights reserved. </p>
+    </div>
+</body>
+</html>

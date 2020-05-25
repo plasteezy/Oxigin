@@ -1,0 +1,311 @@
+﻿<div id="queryConfigDoc">
+    <h4>
+        Query Config Format
+    </h4>
+    <p>
+        The query config property of reports is an XML document or fragment with root element
+        <strong>params</strong> and zero or more <strong>param</strong> elements representing
+        configuration for report query parameters.
+    </p>
+    <p>
+        By default, a checkbox is shown for a boolean parameter and a text field is shown for
+        any other kind of parameter.
+    </p>
+    <p>
+        The attributes and elements of a <strong>param</strong> element are as follows:
+    </p>
+    <div class="paramAttrs">
+        <table class="table table-striped">
+            <caption>
+                Report Parameter Attributes</caption>
+            <tr>
+                <th>
+                    Attribute
+                </th>
+                <th>
+                    Explanation
+                </th>
+                <th>
+                    Format
+                </th>
+                <th>
+                    Is Required?
+                </th>
+                <th>
+                    Example
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    id
+                </td>
+                <td>
+                    Placeholder used inside an SQL query for replacement by a user supplied value.
+                </td>
+                <td>
+                    Alphanumeric string surrounded by underscores.
+                </td>
+                <td>
+                    Yes
+                </td>
+                <td>
+                    <tt>id="_Name_"</tt>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    name
+                </td>
+                <td>
+                    String which is used to display parameter to user to supply a value.
+                </td>
+                <td>
+                    string
+                </td>
+                <td>
+                    No (defaults to value of id attribute)
+                </td>
+                <td>
+                    <tt>name="Name"</tt>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    type
+                </td>
+                <td>
+                    Used to validate and configure quoting of user supplied values.
+                </td>
+                <td>
+                    One of the following (case doesn't matter):
+                    <strong>INT</strong>, <strong>LONG</strong>, <strong>DATE</strong>, <strong>TIME</strong>,
+                    <strong>DATETIME</strong>, <strong>STRING</strong>,
+                    <strong>DOUBLE</strong>, <strong>FLOAT</strong>, <strong>DECIMAL</strong>,
+                    <strong>BOOLEAN</strong>, <strong>GUID</strong>
+                </td>
+                <td>
+                    No (defaults to string)
+                </td>
+                <td>
+                    <tt>type="INT"</tt>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    default
+                </td>
+                <td>
+                    Value used for a parameter if user doesn't supply a value. The prescence or absence
+                    of this attribute makes a parameter optional or required respectively.
+                </td>
+                <td>
+                    Any string convertible to param type.
+                </td>
+                <td>
+                    No
+                </td>
+                <td>
+                    <tt>default="now"</tt>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="paramElems">
+        <p class="title">
+            Report Parameter Elements
+        </p>
+        <div class="paramElem">
+            <p class="title">
+                1. ui</p>
+            <p>
+                The <strong>ui</strong> element is used to specify that a custom UI widget be displayed
+                for a particular report query parameter through its <strong>type</strong> parameter.
+            </p>
+            <table class="table table-striped">
+                <caption>
+                    Additional UI Attributes</caption>
+                <tr>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Additional Attributes
+                    </th>
+                    <th>
+                        Notes
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        DROP_DOWN_DB
+                    </td>
+                    <td>
+                        Displays a drop-down list populated from a report query.
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    query
+                                </td>
+                                <td>
+                                    Id of a report query
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        The text and value attributes of an option of the select HTML element used as the
+                        drop-down list are populated from the second and first columns of the result set
+                        of a report query respectively. If the report query returns a one-column result
+                        set, then the text and value attributes are filled with the same result set.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        AUTOCOMPLETE
+                    </td>
+                    <td>
+                        Displays a text field with autosuggest capabilities, where the suggestions are the
+                        results of executing a report query.
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    query
+                                </td>
+                                <td>
+                                    Id of a report query
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        The texts displayed are fetched from the first column of the results of executing
+                        a report query. A <strong>_term_</strong> parameter representing the display text
+                        field's value is available for use in the query, in order to implement the common
+                        scenario of fetching texts starting with some string.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        DROP_DOWN
+                    </td>
+                    <td>
+                        Displays a drop-down list populated from name-value pairs extracted from a query
+                        string.
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    data
+                                </td>
+                                <td>
+                                    The query string supplying the text and values of the options of the select HTML
+                                    element used as the drop-down list.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        A name-value pair in the query string is mapped to the value and text attributes
+                        of an option of the select HTML element respectively. If the value of a name-value
+                        pair is empty, the name will be used for both the value and text attributes of a
+                        select option.
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="examples">
+        <p class="title">
+            Examples</p>
+        <div class="example">
+            <p>
+                1. Create an integer parameter.</p>
+            <pre>
+    &lt;params&gt;
+        &lt;param id="_Age_" name="Age" type="INT"/&gt;
+    &lt;/params&gt;
+        </pre>
+        </div>
+        <div class="example">
+            <p>
+                2. Create drop down list populated from report query with id 2, assuming such a
+                report query exists.
+            </p>
+            <pre>
+    &lt;params&gt;
+        &lt;param id="_Accounts_"&gt;
+            &lt;ui type="DROP_DOWN_DB" query="2" /&gt;
+        &lt;/param&gt;
+    &lt;/params&gt;
+        </pre>
+            <p>
+                Report query 2 may be defined as follows:</p>
+            <pre>
+    SELECT UserId, UserName FROM Users
+</pre>
+        </div>
+        <div class="example">
+            <p>
+                3. Create text field with autocompleting ability, assuming there's a report query
+                with id of 3 .</p>
+            <pre>
+    &lt;params&gt;
+        &lt;param id="_Accounts_"&gt;
+            &lt;ui type="AUTOCOMPLETE" query="3" /&gt;
+        &lt;/param&gt;
+    &lt;/params&gt;
+</pre>
+            <p>
+                Report query 3 may be defined as follows:</p>
+            <pre>
+    SELECT AccountId FROM Accounts WHERE AccountId LIKE <strong>_term_</strong> + '%'
+</pre>
+            <p>
+                Note the use of the <strong>_term_</strong> parameter.</p>
+        </div>
+        <div class="example">
+            <p>
+                4. Create a drop down list in which both text and value of select options will be
+                set to name portion of name-value pairs in query string.</p>
+            <pre>
+    &lt;params&gt;
+        &lt;param id="_Networks_"&gt;
+            &lt;ui type="DROP_DOWN" data="MTN=&amp;amp;VODAFONE=&amp;amp;TIGO=&amp;amp;EXPRESSO=&amp;amp;GLOW=&amp;amp;AIRTEL=" /&gt;
+        &lt;/param&gt;
+    &lt;/params&gt;
+</pre>
+        </div>
+        <div class="example">
+            <p>
+                5. Create a drop down list which differs from above example in that the number prefixes
+                will instead be used as the values of select options.</p>
+            <pre>
+    &lt;params&gt;
+        &lt;param id="_Networks2_"&gt;
+            &lt;ui type="DROP_DOWN" data="024;054=MTN&amp;amp;020=VODAFONE&amp;amp;027;057=TIGO&amp;amp;028=EXPRESSO&amp;amp;023=GLOW&amp;amp;026=AIRTEL" /&gt;
+        &lt;/param&gt;
+    &lt;/params&gt;
+</pre>
+        </div>
+    </div>
+</div>
