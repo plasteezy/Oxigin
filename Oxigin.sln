@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Admin", "Web.Admin\Web.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Robin", "Core.Robin\Core.Robin.csproj", "{FB0B1B3F-6547-4C2C-A5E8-B1A448B81932}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Api", "Web.Api\Web.Api.csproj", "{082B4C4D-1BFD-45DE-A38C-1A502FDC049D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{FB0B1B3F-6547-4C2C-A5E8-B1A448B81932}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB0B1B3F-6547-4C2C-A5E8-B1A448B81932}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB0B1B3F-6547-4C2C-A5E8-B1A448B81932}.Release|Any CPU.Build.0 = Release|Any CPU
+		{082B4C4D-1BFD-45DE-A38C-1A502FDC049D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{082B4C4D-1BFD-45DE-A38C-1A502FDC049D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{082B4C4D-1BFD-45DE-A38C-1A502FDC049D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{082B4C4D-1BFD-45DE-A38C-1A502FDC049D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{36066E5B-09BB-4658-B2D1-2D3DBCDBA5A9} = {BA3ACA20-A22C-4972-80E6-C6E330347A51}
 		{C390CFF3-2BE4-49CC-9E35-1136F01B381A} = {BA3ACA20-A22C-4972-80E6-C6E330347A51}
 		{FB0B1B3F-6547-4C2C-A5E8-B1A448B81932} = {D1C17160-1D50-4FE3-922A-B1EA6A97153C}
+		{082B4C4D-1BFD-45DE-A38C-1A502FDC049D} = {BA3ACA20-A22C-4972-80E6-C6E330347A51}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A1A1F6AC-8752-4754-8C46-E45B90A8581B}
