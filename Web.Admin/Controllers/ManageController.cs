@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Global;
-using Web.Admin.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Web.Admin.Models;
 using Web.Data.Model;
 
 namespace Web.Admin.Controllers
@@ -88,6 +88,45 @@ namespace Web.Admin.Controllers
 
                 FlashSuccess("Account name updated successfully");
                 return RedirectToAction("index");
+            }
+
+            FlashValidationError();
+            return View(model);
+        }
+
+        public async Task<ActionResult> ChangeAccountPhone()
+        {
+            var user = await UserManager.FindByEmailAsync(User.Identity.Name);
+
+            var model = new ChangeAccountPhone
+            {
+                Phone = user.PhoneNumber
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeAccountPhone(ChangeAccountPhone model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var user = UserManager.FindByEmail(User.Identity.Name);
+
+                    user.PhoneNumber = model.Phone;
+                    UserManager.Update(user);
+
+                    FlashSuccess("Phone number updated successfully.");
+                    return RedirectToAction("Index");
+                }
+                catch (ApplicationException ex)
+                {
+                    FlashError(ex.Message);
+                    return View(model);
+                }
             }
 
             FlashValidationError();

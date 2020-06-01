@@ -1,0 +1,123 @@
+@model IEnumerable<Web.Data.Model.Project>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section header{
+    <div class="page-header">
+        <h1 class="pull-left">
+            <i class="fa fa-list-alt"></i>
+            <span>List :: All Projects</span>
+        </h1>
+    </div>
+}
+
+@if (!Model.Any())
+{
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            Your Project list is empty. Click <a href="@Url.Action("Create", "Project")" style="color: blue">here</a> to add a new one.
+        </div>
+    </div>
+}
+else{
+    <p>
+        <a href="@Url.Action("Create")" class="btn btn-sm btn-success"><i class="fa fa-plus-square"></i> New Project</a>
+    </p>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="box orange-border" style="margin-bottom: 0;">
+                <div class="box-header dark-background">
+                    <div class="title">
+                        <div class="fa fa-list-alt"></div>
+                        All Projects
+                    </div>
+                    <div class="actions">
+                        <a class="btn box-collapse btn-xs btn-link" href="#">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="box-content box-no-padding">
+                    <div class="responsive-table">
+                        <div class="scrollable-area">
+                            <table class="data-table-column-filter table table-bordered table-striped" style="margin-bottom: 0;">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        Name:
+                                    </th>
+                                    <th>
+                                        Description:
+                                    </th>
+                                    <th>
+                                        Status:
+                                    </th>
+                                    <th>
+                                        Date Created:
+                                    </th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var item in Model){
+                                    <tr>
+                                        <td>
+                                            @item.Name
+                                        </td>
+                                        <td>
+                                            @item.Description
+                                        </td>
+                                        <td>
+                                            @if (item.IsActive)
+                                            {
+                                                <span class="label label-success">Active</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="label label-danger">Inactive</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @String.Format("{0:g}", item.DateCreated)
+                                        </td>
+                                        <td>
+                                            <a href="@Url.Action("Edit", new { id=item.ProjectId})" class="btn btn-primary btn-xs">Edit</a>
+                                            <a href="@Url.Action("Details", new { id=item.ProjectId})" class="btn btn-inverse btn-xs">Details</a>
+                                            <a href="@Url.Action("Delete", new { id=item.ProjectId})" class="btn btn-danger btn-xs">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>
+                                        Name:
+                                    </th>
+                                    <th>
+                                        Description:
+                                    </th>
+                                    <th>
+                                        Status:
+                                    </th>
+                                    <th colspan="2">
+                                        Date Created:
+                                    </th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts{
+    <script src="@Url.Content("~/assets/javascripts/plugins/datatables/datatables.min.js")" type="text/javascript"></script>
+}
+
+

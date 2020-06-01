@@ -50,8 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigurationFactory.cs" />
-    <Compile Include="Config\ConfigTypeElement.cs" />
-    <Compile Include="Config\OxiginConfigSection.cs" />
+    <Compile Include="ConfigTypeElement.cs" />
+    <Compile Include="OxiginConfigSection.cs" />
     <Compile Include="Contract\IConfigurationFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

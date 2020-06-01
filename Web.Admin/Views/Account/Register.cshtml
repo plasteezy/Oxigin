@@ -51,8 +51,8 @@
                         @Html.LabelFor(model => model.AccessLevel)
                         @Html.DropDownListFor(model => model.AccessLevel, new[]
                         {
-                            new SelectListItem {Text = Constant.SuperAdmin, Value = Constant.SuperAdmin},
-                            new SelectListItem {Text = Constant.Admin, Value = Constant.Admin}
+                            new SelectListItem {Text = "SuperAdmin", Value = "SuperAdmin"},
+                            new SelectListItem {Text = "Admin", Value = "Admin"}
                         }, "Choose...", new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.AccessLevel)
                     </div>

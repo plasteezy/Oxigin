@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace Core.Config.Config
+namespace Core.Config
 {
     public class ConfigTypeElement : ConfigurationElement
     {

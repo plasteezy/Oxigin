@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using Core.Config.Config;
 using Core.Config.Contract;
 using Core.Lib;
 using Core.Lib.Contracts;
@@ -57,11 +56,6 @@ namespace Core.Config
         public PipelineEvents GetEvents()
         {
             return events;
-        }
-
-        PipelineEvents IConfigurationFactory.GetEvents()
-        {
-            throw new NotImplementedException();
         }
     }
 }

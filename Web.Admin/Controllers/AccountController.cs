@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Web.Admin.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Web.Admin.Models;
 using Web.Data.Contract;
 using Web.Data.Model;
 using Web.Data.Repository;
@@ -149,7 +150,7 @@ namespace Web.Admin.Controllers
                 return RedirectToAction("Index", "AdminAccount");
             }
 
-            FlashError($"{model.Name} already has a user account on the system.");
+            FlashError(result.Errors.FirstOrDefault());
             return View(model);
         }
 

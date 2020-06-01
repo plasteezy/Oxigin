@@ -59,6 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contract\IProjectRepository.cs" />
+    <Compile Include="Migrations\202006011658108_Initial.cs" />
+    <Compile Include="Migrations\202006011658108_Initial.designer.cs">
+      <DependentUpon>202006011658108_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\IdentityModels.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Model\SavedQuery.cs" />
@@ -69,7 +74,11 @@
     <Compile Include="Repository\ReportRepository.cs" />
     <Compile Include="Repository\UserAccountRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202006011658108_Initial.resx">
+      <DependentUpon>202006011658108_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

@@ -30,6 +30,7 @@ namespace Web.Data.Repository
                         {
                             Id = reader["Id"].ToString(),
                             UserName = reader["UserName"].ToString(),
+                            Name = reader["Name"].ToString(),
                             DateCreated = DateTime.Parse(reader["DateCreated"].ToString()),
                             LastLoginDate = DateTime.Parse(reader["LastLoginDate"].ToString()),
                         };
@@ -62,6 +63,7 @@ namespace Web.Data.Repository
                         {
                             Id = reader["Id"].ToString(),
                             UserName = reader["UserName"].ToString(),
+                            Name = reader["Name"].ToString(),
                             DateCreated = DateTime.Parse(reader["DateCreated"].ToString()),
                             LastLoginDate = DateTime.Parse(reader["LastLoginDate"].ToString()),
                         };
@@ -92,6 +94,7 @@ namespace Web.Data.Repository
                         {
                             Id = reader["Id"].ToString(),
                             UserName = reader["UserName"].ToString(),
+                            Name = reader["Name"].ToString(),
                             DateCreated = DateTime.Parse(reader["DateCreated"].ToString()),
                             LastLoginDate = DateTime.Parse(reader["LastLoginDate"].ToString()),
                         };
@@ -122,6 +125,7 @@ namespace Web.Data.Repository
                         {
                             Id = reader["Id"].ToString(),
                             UserName = reader["UserName"].ToString(),
+                            Name = reader["Name"].ToString(),
                             DateCreated = DateTime.Parse(reader["DateCreated"].ToString()),
                             LastLoginDate = DateTime.Parse(reader["LastLoginDate"].ToString()),
                         };

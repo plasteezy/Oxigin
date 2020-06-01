@@ -1,28 +1,25 @@
-@model Web.Data.Model.SavedQuery
+@model Web.Data.Model.Project
 
 @{
-    ViewBag.Title = "Report - Edit";
-	ViewBag.IsEditing = true;
+    ViewBag.Title = "Create";
 }
 
-
 @section header{
-    <div class="page-header">
+	<div class="page-header">
         <h1 class="pull-left">
-            <i class="fa fa-briefcase"></i>
-            <span>Custom Reports</span>
+            <i class="fa fa-plus-square"></i>
+            <span>Project :: Create</span>
         </h1>
     </div>
 }
-
 
 <div class="row">
     <div class="col-sm-12">
         <div class="box">
             <div class="box-header dark-background">
                 <div class="title">
-                    <div class="fa fa-pencil-square"></div>
-                    Edit Report
+                    <div class="fa fa-plus-square"></div>
+                    Enter Project Details
                 </div>
                 <div class="actions">
                     <a class="btn box-collapse btn-xs btn-link" href="#">
@@ -31,15 +28,14 @@
                 </div>
             </div>
             <div class="box-content">
-
                 @using (Html.BeginForm())
                 {
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.AntiForgeryToken()
 
-                    @Html.HiddenFor(model => model.Id)
-                    @Html.HiddenFor(model => model.Date)
+                    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
 
                     @Html.Partial("_CreateOrEdit", Model)
+
                     <div class="form-actions form-actions-padding-sm form-actions-padding-md form-actions-padding-lg" style="margin-bottom: 0;">
                         <input type="submit" class="btn btn-success btn-sm" value="Save" /> or
                         <a href="@Url.Action("Index")" class="btn btn-sm btn-danger">Cancel</a>
@@ -49,3 +45,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,6 +1,6 @@
-@using Web.Admin.Models
 @using Microsoft.AspNet.Identity
 @using Microsoft.AspNet.Identity.EntityFramework
+@using Web.Data.Model
 @model IEnumerable<UserAccount>
 
 @{
@@ -41,7 +41,7 @@ else
                 <div class="box-header dark-background">
                     <div class="title">
                         <div class="fa fa-list-alt"></div>
-                        All Customers
+                        All User Accounts
                     </div>
                     <div class="actions">
                         <a class="btn box-collapse btn-xs btn-link" href="#">
@@ -62,7 +62,7 @@ else
                                             Name:
                                         </th>
                                         <th>
-                                            Acces Level:
+                                            Access Level:
                                         </th>
                                         <th>
                                             Date Created:
@@ -94,10 +94,10 @@ else
                                                 }
                                             </td>
                                             <td>
-                                                GHS @item.DateCreated
+                                                @item.DateCreated
                                             </td>
                                             <td>
-                                                @item.DateCreated.ToString("d")
+                                                @item.LastLoginDate.ToString("d")
                                             </td>
                                             <td>
                                                 <a href="@Url.Action("ResetPassword", "Account", new {id = item.Id})" class="btn btn-xs btn-inverse">Reset Password</a>
@@ -116,7 +116,7 @@ else
                                             Name:
                                         </th>
                                         <th>
-                                            Acces Level:
+                                            Access Level:
                                         </th>
                                         <th>
                                             Date Created:

@@ -1,0 +1,71 @@
+@model Web.Data.Model.Project
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+@section header{
+	<div class="page-header">
+        <h1 class="pull-left">
+            <i class="fa fa-trash"></i>
+            <span>Project :: Delete</span>
+        </h1>
+    </div>
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box">
+            <div class="box-header dark-background">
+                <div class="title">
+                    <div class="fa fa-trash"></div>
+                    Are Your Sure?
+                </div>
+                <div class="actions">
+                    <a class="btn box-collapse btn-xs btn-link" href="#">
+                        <i></i>
+                    </a>
+                </div>
+            </div>
+            <div class="box-content">
+			 @{Html.BeginForm(); }
+
+			
+				   <div class="form-group">
+						<label>Name</label>
+						<div style="display: block">@Model.Name</div>
+					</div>    
+
+				   <div class="form-group">
+						<label>Description</label>
+						<div style="display: block">@Model.Description</div>
+					</div>    
+
+				   <div class="form-group">
+						<label>Status</label>
+				       <div style="display: block">
+				           @if (Model.IsActive)
+				           {
+				               <span class="label label-success">Active</span>
+				           }
+				           else
+				           {
+				               <span class="label label-danger">Inactive</span>
+				           }
+				       </div>
+					</div>    
+
+				   <div class="form-group">
+						<label>Date Created</label>
+						<div style="display: block">@String.Format("{0:g}", Model.DateCreated)</div>
+					</div>    
+                <div class="form-actions form-actions-padding-sm form-actions-padding-md form-actions-padding-lg" style="margin-bottom: 0;">
+                    <input type="submit" class="btn btn-danger btn-sm" value="Delete" /> or
+                    <a href="@Url.Action("Index")" class="btn btn-sm btn-primary">Go Back</a>
+                </div>
+			@{Html.EndForm(); }
+            </div>
+        </div>
+    </div>
+</div>
+

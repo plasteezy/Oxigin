@@ -1,11 +1,12 @@
 ﻿using System.Linq;
 using System.Text;
 using System.Web.Mvc;
-using Web.Admin.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Web.Admin.Models;
 using Web.Data.Contract;
 using Web.Data.Model;
+using Web.Data.Repository;
 
 namespace Web.Admin.Controllers
 {
@@ -13,6 +14,8 @@ namespace Web.Admin.Controllers
     public class AdminAccountController : RootController
     {
         private readonly IUserAccountRepository userAccountRepository;
+
+        public AdminAccountController() : this(new UserAccountRepository()){}
 
         public AdminAccountController(IUserAccountRepository userAccountRepository)
         {
