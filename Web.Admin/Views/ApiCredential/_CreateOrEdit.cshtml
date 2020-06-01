@@ -1,0 +1,9 @@
+@model Web.Data.Model.ApiCredential
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="form-group">
+	@Html.LabelFor(model => model.Name)
+	@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+	@Html.ValidationMessageFor(model => model.Name)
+</div>

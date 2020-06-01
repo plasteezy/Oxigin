@@ -103,6 +103,9 @@
       <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Secure_Coding.MvcSecurityExtensions">
+      <HintPath>..\dlls\Secure_Coding.MvcSecurityExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -224,6 +227,7 @@
     <Compile Include="Components\QueryParameterParser.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminAccountController.cs" />
+    <Compile Include="Controllers\ApiCredentialController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
@@ -805,6 +809,12 @@
     <Content Include="Views\Project\Details.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Project\_CreateOrEdit.cshtml" />
+    <Content Include="Views\ApiCredential\Create.cshtml" />
+    <Content Include="Views\ApiCredential\Edit.cshtml" />
+    <Content Include="Views\ApiCredential\Delete.cshtml" />
+    <Content Include="Views\ApiCredential\Details.cshtml" />
+    <Content Include="Views\ApiCredential\Index.cshtml" />
+    <Content Include="Views\ApiCredential\_CreateOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Global\Global.csproj">

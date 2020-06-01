@@ -17,7 +17,7 @@ namespace Global.Contracts
         /// <returns>returns the found entity of type T as a task</returns>
         T Find(int id);
 
-        void InsertOrUpdate(T entity);
+        void InsertOrUpdate(T apiCredential);
 
         /// <summary>
         /// When implemented, deletes an entity

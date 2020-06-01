@@ -1,0 +1,72 @@
+@model Web.Data.Model.ApiCredential
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@section header{
+	<div class="page-header">
+        <h1 class="pull-left">
+            <i class="fa fa-th-large"></i>
+            <span>API Credential :: Details</span>
+        </h1>
+    </div>
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box">
+            <div class="box-header dark-background">
+                <div class="title">
+                    <div class="fa fa-th-large"></div>
+                    Details Of API Credential
+                </div>
+                <div class="actions">
+                    <a class="btn box-collapse btn-xs btn-link" href="#">
+                        <i></i>
+                    </a>
+                </div>
+            </div>
+            <div class="box-content">
+			
+                <div class="form-group">
+                    <label>Name</label>
+                    <div style="display: block">@Model.Name</div>
+                </div>    
+
+                <div class="form-group">
+                    <label>Status</label>
+                    <div style="display: block">
+                        @if (Model.IsActive)
+                        {
+                            <span class="label label-success">Active</span>
+                        }
+                        else
+                        {
+                            <span class="label label-danger">Inactive</span>
+                        }
+                    </div>
+                </div>      
+
+                <div class="form-group">
+                    <label>Key</label>
+                    <div style="display: block">@Model.Key</div>
+                </div>    
+
+                <div class="form-group">
+                    <label>Secret</label>
+                    <div style="display: block">@Model.Secret</div>
+                </div>    
+
+                <div class="form-group">
+                    <label>Date Created</label>
+                    <div style="display: block">@String.Format("{0:g}", Model.DateCreated)</div>
+                </div>    
+                <div class="form-actions form-actions-padding-sm form-actions-padding-md form-actions-padding-lg" style="margin-bottom: 0;">
+                    <a href="@Url.Action("Index")" class="btn btn-sm btn-primary">Go Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

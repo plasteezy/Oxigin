@@ -1,4 +1,5 @@
-@model Web.Data.Model.Project
+@using Secure_Coding.MvcSecurityExtensions
+@model Web.Data.Model.ApiCredential
 
 @{
     ViewBag.Title = "Edit";
@@ -8,7 +9,7 @@
 	<div class="page-header">
         <h1 class="pull-left">
             <i class="fa fa-pencil-square"></i>
-            <span>Project :: Edit</span>
+            <span>API Credential :: Edit</span>
         </h1>
     </div>
 }
@@ -19,7 +20,7 @@
             <div class="box-header dark-background">
                 <div class="title">
                     <div class="fa fa-pencil-square"></div>
-                    Enter Project Details
+                    Enter API Credential Details
                 </div>
                 <div class="actions">
                     <a class="btn box-collapse btn-xs btn-link" href="#">
@@ -32,13 +33,24 @@
                 {
                     @Html.AntiForgeryToken()
 
-                    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                     @Html.Partial("_CreateOrEdit", Model)
+                    <div class="form-group">
+                        <label for="IsActive">Activate?</label>
+                        @Html.EditorFor(model => model.IsActive, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IsActive)
+                    </div>
 
-                    @Html.HiddenFor(model => model.ProjectId)
+                    @Html.AntiModelInjectionFor(model => model.ApiCredentialId)
+                    @Html.AntiModelInjectionFor(model => model.Secret)
+                    @Html.AntiModelInjectionFor(model => model.Key)
+                    @Html.AntiModelInjectionFor(model => model.DateCreated)
+
+                    @Html.HiddenFor(model => model.ApiCredentialId)
                     @Html.HiddenFor(model => model.DateCreated)
-                    @Html.HiddenFor(model => model.IsActive)
+                    @Html.HiddenFor(model => model.Secret)
+                    @Html.HiddenFor(model => model.Key)
                     <div class="form-actions form-actions-padding-sm form-actions-padding-md form-actions-padding-lg" style="margin-bottom: 0;">
                         <input type="submit" class="btn btn-success btn-sm" value="Save" /> or
                         <a href="@Url.Action("Index")" class="btn btn-sm btn-danger">Cancel</a>

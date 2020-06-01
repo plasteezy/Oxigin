@@ -95,4 +95,18 @@ namespace Web.Data.Model
         public double Relevance { get; set; }
         public virtual ProjectDataSet ProjectDataSet { get; set; }
     }
+
+    public class ApiCredential
+    {
+        public int ApiCredentialId { get; set; }
+
+        [Required(ErrorMessage = "Name is required")]
+        [RegularExpression(@"^[a-zA-Z0-9!@#$%&*()\s?'"":;.,_+={}\[\]\\/-]+$", ErrorMessage = "Please enter alphanumeric characters only")]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+        public bool IsActive { get; set; }
+        public string Key { get; set; }
+        public string Secret { get; set; }
+        public DateTime DateCreated { get; set; }
+    }
 }

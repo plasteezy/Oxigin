@@ -35,17 +35,17 @@ namespace Web.Data.Repository
             return context.SavedQueries.Find(id);
         }
 
-        public void InsertOrUpdate(SavedQuery entity)
+        public void InsertOrUpdate(SavedQuery apiCredential)
         {
-            if (entity.Id == default(int))
+            if (apiCredential.Id == default(int))
             {
                 // New entity
-                context.SavedQueries.Add(entity);
+                context.SavedQueries.Add(apiCredential);
             }
             else
             {
                 // Existing entity
-                context.Entry(entity).State = EntityState.Modified;
+                context.Entry(apiCredential).State = EntityState.Modified;
             }
         }
 

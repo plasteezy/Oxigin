@@ -28,17 +28,17 @@ namespace Web.Data.Repository
             return context.Projects.Find(id);
         }
 
-        public void InsertOrUpdate(Project project)
+        public void InsertOrUpdate(Project apiCredential)
         {
-            if (project.ProjectId == default(int))
+            if (apiCredential.ProjectId == default(int))
             {
                 // New entity
-                context.Projects.Add(project);
+                context.Projects.Add(apiCredential);
             }
             else
             {
                 // Existing entity
-                context.Entry(project).State = EntityState.Modified;
+                context.Entry(apiCredential).State = EntityState.Modified;
             }
         }
 

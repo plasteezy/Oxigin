@@ -42,5 +42,6 @@ namespace Web.Data.Model
         public DbSet<SentimentDataSet> SentimentDataSets { get; set; }
         public DbSet<KeywordDataSet> KeywordDataSets { get; set; }
         public DbSet<SavedQuery> SavedQueries { get; set; }
+        public DbSet<ApiCredential> ApiCredentials { get; set; }
     }
 }

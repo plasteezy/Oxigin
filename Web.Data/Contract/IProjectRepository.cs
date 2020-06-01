@@ -16,6 +16,10 @@ namespace Web.Data.Contract
     {
     }
 
+    public interface IApiCredentialRepository : IGenericRepository<ApiCredential>
+    {
+    }
+
     public interface IUserAccountRepository
     {
         List<UserAccount> AllAccounts();

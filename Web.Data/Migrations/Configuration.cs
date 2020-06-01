@@ -20,7 +20,7 @@ namespace Web.Data.Migrations
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
-            SeedAdminUser(context);
+            //SeedAdminUser(context);
         }
 
         private static void SeedAdminUser(ApplicationDbContext context)
